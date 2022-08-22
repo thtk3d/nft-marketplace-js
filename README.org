@@ -1,20 +1,21 @@
 
 #+Title: NFT Marketplace - Javascript/Typescript | Courses Youtube
 
-* V.I.P Member
+* Introduction
+** V.I.P Member
 - Cập nhập video nhanh hơn
 - Xem tất cả các khoá học
 - Được ưu tiên reply comment & trả lời câu hỏi Q&A
 - Có Group hỗ trợ.
-* Đối tượng
+** Đối tượng
 - Mới học về lập trình, có nền tảng về front-end (html,css,javascript,Reactjs).
 - Junior-level to Mid-levels trong blockchain technology.
 - Những người mới đang tìm hiểu về Solidity, Ethereum, Nextjs Development.
 - Dành cho những ai muốn tìm hiểu cách tạo một Application từ đầu.
-* Kiến thức yêu cầu
+** Kiến thức yêu cầu
 - Kiến thức cơ bản về Javascript, ReactJs.
 - Kiến thức cơ bản về Solidity
-* Khoá học này bao gồm
+** Khoá học này bao gồm
 - Khoá học bao gồm các kiến thức cho một sản phẩm full chức năng NFT Marketplace
   tương tự Opensea và GameNFT ( sử dụng Unity ).
 - Sử dụng token tiêu chuẩn ERC721.
@@ -53,7 +54,7 @@
   + Hash
 - Hiểu rõ về ERC721 và cách sử dụng nó.
 - Sử dụng giao diện từ NextJS ( chỉ cần căn bản về ReactJs có thể sử dụng được ).
-* Mục tiêu của khoá học
+** Mục tiêu của khoá học
 - Trang bị các kiến thức nền tảng nhất của một blockchain development.
 - Phù hợp cho các bạn đã có nền tảng cơ bản về lập trình, hoặc mới học lập trình
   muốn thử sức với Web3.
@@ -62,9 +63,69 @@
 - Cách viết giao diện web trên nền tảng framework NextJs, là một phiên bản tốt
   hơn của ReactJs.
 - Xây dựng một Application hoàn thiền để thêm vào profile của các bạn.
-* Các chủ đề hữu ích trong khoá học
+** Các chủ đề hữu ích trong khoá học
 - NextJs tương tác với Web3 và Blockchain
 - Sử dụng Hooks và SWR để tối ưu hoá code.
 - Khởi tạo smart contract với ERC20 và ERC721.
 - Thao tác dữ liệu trên pinata để lưu trữ NFT.
 - Upgrade lên Typescript.
+* NextJs
+** What is [[https://nextjs.org/][NextJs]]?
+- React Framework for Production
+- Next.js gives you the best developer experience with all the features you need
+  for production: hybrid static & server rendering, TypeScript support, smart
+  bundling, route pre-fetching, and more. No config needed.
+** Khi nào nên dùng NextJs / ReactJs
+|-------------+----------------------------+-------------------------------------------|
+|             | ReactJs                    | NextJs                                    |
+|-------------+----------------------------+-------------------------------------------|
+| type        | Library                    | Framework                                 |
+| Rendering   | CSR                        | CSR, SSR & SSG                            |
+| Support SEO | No                         | Yes                                       |
+| when use    | internal / private web app | Marketing/ Landing page/ Blog / Ecommerce |
+|-------------+----------------------------+-------------------------------------------|
+* Setup environment code
+- Các thứ cần phải cài đặt:
+  | # | Name          | Notes                 |
+  |---+---------------+-----------------------|
+  | 1 | [[https://nodejs.org/en/][Nodejs]]        | JS runtime enviroment |
+  | 2 | [[https://git-scm.com/][Git]]           | Version Control       |
+  | 3 | [[https://code.visualstudio.com/][VS Code]]       | Code Editor           |
+  | 4 | [[https://github.com/tonsky/FiraCode][FiraCode Font]] | Font for dev          |
+  |---+---------------+-----------------------|
+- [[https://codeforgeek.com/best-visual-studio-code-extensions-web-development/][Top 15 Extension for Web Development]]
+* Setup Project
+- Setup project with =javascript=
+  #+begin_src
+    npx create-next-app $name
+    --
+    yarn create next-app $name
+  #+end_src
+- Setup project with =typescript=
+  #+begin_src
+npx create-next-app --ts
+--
+yarn create next-app --typescript
+  #+end_src
+- Push code to Github: search tutorial on youtube
+- Deploy website to [[https://vercel.com/new][Vercel]]
+* File-System Routing
+** Index routes
+- 'pages/index.js' -> '/'
+- 'pages/blog/index.js' -> '/blog'
+** Nested routes
+- 'pages/blog/first-blog.js' -> '/blog/first-blog'
+- 'pages/blog/category/post.js' -> '/blog/category/post'
+** Dynamic route segments
+- 'pages/blog/[slug].js' -> '/blog/:slug' -> ('/blog/hello-world')
+- 'pages/[username]/profile.js' -> '/:username/profile' -> ('/vugomars/profile')
+- 'pages/post/[...slug].js' -> '/post/* -> ('/post/2022/id/title')
+** Linking pages
+#+begin_src rjsx
+import Link from 'next/link'
+
+<Link href="/">
+  <a> Home </a>
+</Link>
+
+#+end_src
