@@ -1,5 +1,5 @@
-
 #+Title: NFT Marketplace - Javascript/Typescript | Courses Youtube
+#+author: Dang Quang Vu | vugomars@gmail.com
 
 * Introduction
 ** V.I.P Member
@@ -69,6 +69,7 @@
 - Khởi tạo smart contract với ERC20 và ERC721.
 - Thao tác dữ liệu trên pinata để lưu trữ NFT.
 - Upgrade lên Typescript.
+
 * NextJs
 ** What is [[https://nextjs.org/][NextJs]]?
 - React Framework for Production
@@ -76,14 +77,14 @@
   for production: hybrid static & server rendering, TypeScript support, smart
   bundling, route pre-fetching, and more. No config needed.
 ** Khi nào nên dùng NextJs / ReactJs
-|-------------+----------------------------+-------------------------------------------|
-|             | ReactJs                    | NextJs                                    |
-|-------------+----------------------------+-------------------------------------------|
-| type        | Library                    | Framework                                 |
-| Rendering   | CSR                        | CSR, SSR & SSG                            |
-| Support SEO | No                         | Yes                                       |
-| when use    | internal / private web app | Marketing/ Landing page/ Blog / Ecommerce |
-|-------------+----------------------------+-------------------------------------------|
+|-------------+-----------------------------+-------------------------------------------|
+|             | ReactJs                     | NextJs                                    |
+|-------------+-----------------------------+-------------------------------------------|
+| type        | Library                     | Framework                                 |
+| Rendering   | CSR - Client-side rendering | CSR, SSR & SSG                            |
+| Support SEO | No                          | Yes                                       |
+| when use    | internal / private web app  | Marketing/ Landing page/ Blog / Ecommerce |
+|-------------+-----------------------------+-------------------------------------------|
 * Setup environment code
 - Các thứ cần phải cài đặt:
   | # | Name          | Notes                 |
@@ -94,6 +95,7 @@
   | 4 | [[https://github.com/tonsky/FiraCode][FiraCode Font]] | Font for dev          |
   |---+---------------+-----------------------|
 - [[https://codeforgeek.com/best-visual-studio-code-extensions-web-development/][Top 15 Extension for Web Development]]
+
 * Setup Project
 - Setup project with =javascript=
   #+begin_src
@@ -101,6 +103,7 @@
     --
     yarn create next-app $name
   #+end_src
+
 - Setup project with =typescript=
   #+begin_src
 npx create-next-app --ts
@@ -127,5 +130,4 @@ import Link from 'next/link'
 <Link href="/">
   <a> Home </a>
 </Link>
-
 #+end_src
