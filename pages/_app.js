@@ -1,5 +1,5 @@
-import "../styles/globals.css";
-import { EmptyLayout } from "../components/ui/layout";
+import "@styles/globals.css";
+import { EmptyLayout } from "@components/ui/layout";
 
 // const Noop = ({ children }) => <>{children}</>;
 

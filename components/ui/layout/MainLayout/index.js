@@ -4,7 +4,7 @@ const MainLayout = ({ children }) => {
   return (
     <div>
       <Header />
-      {children}
+      <div className="fit max-w-[1440px] mx-auto">{children}</div>
       <Footer />
     </div>
   );

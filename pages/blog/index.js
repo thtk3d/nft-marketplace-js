@@ -1,6 +1,6 @@
 /** jsx?|tsx? file header */
 import Link from "next/link";
-import { MainLayout } from "../../components/ui/layout";
+import { MainLayout } from "@components/ui/layout";
 
 export default function BlogPage() {
   return (
