@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 
@@ -15,6 +15,13 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const [web3Api, setWeb3api] = useState();
+
+  useEffect(() => {
+    const eth = window.ethereum;
+    setWeb3api(eth);
+  }, []);
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -68,7 +75,10 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="bg-red-800 px-2 py-0.5 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  className="bg-indigo-700 px-2 py-0.5 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  onClick={() =>
+                    web3Api.request({ method: "eth_requestAccounts" })
+                  }
                 >
                   <span className="sr-only">View notifications</span>
                   Connect
