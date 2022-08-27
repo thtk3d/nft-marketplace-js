@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { loadContract } from "./utils";
 
 const { createContext, useContext, useEffect, useState } = require("react");
 
@@ -14,14 +15,20 @@ export default function Web3Provider({ children }) {
 
   useEffect(() => {
     const loadProvider = async () => {
-      const eth = window.ethereum;
-      const provider = new ethers.providers.Web3Provider(eth);
-      setWeb3api({
-        ethereum: eth,
-        provider,
-        contract: null,
-        isLoading: false,
-      });
+      try {
+        const ethereum = window.ethereum;
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const contract = await loadContract("NftMarket", provider);
+        setWeb3api({
+          ethereum,
+          provider,
+          contract,
+          isLoading: false,
+        });
+      } catch (err) {
+        console.error("Please! Install Metamask");
+        setWeb3api((api) => ({ ...api, isLoading: false }));
+      }
     };
     loadProvider();
   }, []);

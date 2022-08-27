@@ -12,6 +12,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "v1",
     "@openzeppelin/contracts": "^4.7.3",
+    "dotenv": "^16.0.1",
     "ethers": "^5.7.0",
     "next": "12.2.5",
     "react": "18.2.0",
