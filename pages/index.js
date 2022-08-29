@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MainLayout } from "@components/ui/layout";
+import { MainLayout } from "@ui/layout";
 import { useAccount } from "@hooks/web3";
 
 export default function Home() {

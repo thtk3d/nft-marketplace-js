@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useWeb3 } from "@components/provider";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useAccount } from "@hooks/web3";
 
 const navigation = [
   { name: "Dashboard", href: "#", current: true },
@@ -16,7 +16,7 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-  const { ethereum } = useWeb3();
+  const { account } = useAccount();
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -72,9 +72,7 @@ export default function Header() {
                 <button
                   type="button"
                   className="bg-indigo-700 px-2 py-0.5 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                  onClick={() =>
-                    ethereum.request({ method: "eth_requestAccounts" })
-                  }
+                  onClick={() => account.connect()}
                 >
                   <span className="sr-only">View notifications</span>
                   Connect

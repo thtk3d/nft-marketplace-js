@@ -1,17 +1,23 @@
 import useSWR from "swr";
 
-export const hookFactory = (deps) => (params) => {
-  const resSwr = useSWR("web3/account", () => {
-    console.log(deps);
-    console.log(params);
-    const connect = () => {};
-    return "Test Hook useAccount";
-  });
-  return resSwr;
-};
+export const hookFactory =
+  ({ provider, ethereum }) =>
+  () => {
+    const resSwr = useSWR(provider ? "web3/account" : null, async () => {
+      const accounts = await provider?.listAccounts();
+      const account = accounts[0];
+      return account;
+    });
 
-export const useAccount = hookFactory({
-  ethereum: null,
-  provider: null,
-  contract: null,
-});
+    const connect = async () => {
+      try {
+        await ethereum?.request({ method: "eth_requestAccounts" });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    return {
+      ...resSwr,
+      connect,
+    };
+  };

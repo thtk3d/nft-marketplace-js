@@ -1,6 +1,6 @@
 import "@styles/globals.css";
-import { EmptyLayout } from "@components/ui/layout";
-import { Web3Provider } from "@components/provider";
+import { EmptyLayout } from "@ui/layout";
+import { Web3Provider } from "@provider";
 
 // const Noop = ({ children }) => <>{children}</>;
 
