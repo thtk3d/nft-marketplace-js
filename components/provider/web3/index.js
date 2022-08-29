@@ -1,3 +1,4 @@
+import { setupHooks } from "@hooks/web3/setupHooks";
 import { ethers } from "ethers";
 import { loadContract } from "./utils";
 
@@ -11,6 +12,7 @@ export default function Web3Provider({ children }) {
     provider: null,
     contract: null,
     isLoading: true,
+    hooks: setupHooks({}),
   });
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export default function Web3Provider({ children }) {
           provider,
           contract,
           isLoading: false,
+          hooks: setupHooks({ ethereum, provider, contract }),
         });
       } catch (err) {
         console.error("Please! Install Metamask");
@@ -40,4 +43,9 @@ export default function Web3Provider({ children }) {
 
 export function useWeb3() {
   return useContext(Web3Context);
+}
+
+export function useHooks() {
+  const { hooks } = useWeb3();
+  return hooks;
 }
