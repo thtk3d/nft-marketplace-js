@@ -1,16 +1,12 @@
 import Link from "next/link";
 import { MainLayout } from "@components/ui/layout";
 import { useWeb3 } from "@components/provider";
+import { useAccount } from "@hooks/web3/useAccount";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { contract } = useWeb3();
-  console.log(contract);
-
-  const getInfoNFT = async () => {
-    console.log(await contract?.name());
-    console.log(await contract?.symbol());
-  };
-  getInfoNFT();
+  const { data } = useAccount("Params here");
+  console.log(data);
 
   return (
     <div>
