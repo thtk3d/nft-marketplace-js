@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
 import { useAccount } from "@hooks/web3";
+import ConnectButton from "../ConnectButton";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -86,40 +87,12 @@ const Header = () => {
                 </div>
               )}
             </span>
-            {account.isLoading ? (
-              <button
-                type="button"
-                className="inline-flex items-center px-3 py-1.5 border border-gray-500 text-xs font-bold rounded-full shadow-sm text-white bg-darkSecondary hover:bg-darkPrimary aniBtn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                is Loading
-              </button>
-            ) : !account.isInstalled ? (
-              <button
-                type="button"
-                className="inline-flex items-center px-3 py-1.5 border border-gray-500 text-xs font-bold rounded-full shadow-sm text-white bg-darkSecondary hover:bg-darkPrimary aniBtn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => {
-                  window.open("https://metamask.io/download/", "_blank");
-                }}
-              >
-                Install Metamask
-              </button>
-            ) : account.data ? (
-              <button
-                type="button"
-                className="inline-flex items-center px-3 py-1.5 border border-gray-500 text-xs font-bold rounded-full shadow-sm text-white bg-darkSecondary hover:bg-darkPrimary aniBtn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                {account.data.substring(0, 4)}...
-                {account.data.substring(account.data.length - 4)}
-              </button>
-            ) : (
-              <button
-                onClick={account.connect}
-                type="button"
-                className="inline-flex items-center px-3 py-1.5 border border-gray-500 text-xs font-bold rounded-full shadow-sm text-white bg-darkSecondary hover:bg-darkPrimary aniBtn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Connect Wallet
-              </button>
-            )}
+            <ConnectButton
+              account={account.data}
+              connect={account.connect}
+              isLoading={account.isLoading}
+              isInstalled={account.isInstalled}
+            />
           </div>
         </div>
       </div>
