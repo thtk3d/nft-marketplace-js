@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useSWR from "swr";
 
 export const hookFactory =
-  ({ provider, ethereum }) =>
+  ({ provider, ethereum, isLoading }) =>
   () => {
     const { data, mutate, isValidating, ...swr } = useSWR(
       provider ? "web3/account" : null,
@@ -39,11 +39,13 @@ export const hookFactory =
         console.log(err);
       }
     };
+
     return {
       ...swr,
       mutate,
       data,
-      isValidating,
+      isLoading: isLoading || isValidating,
+      isInstalled: ethereum?.isMetaMask || false,
       connect,
     };
   };
