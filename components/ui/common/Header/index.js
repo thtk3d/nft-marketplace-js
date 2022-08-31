@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import { useEffect } from "react";
 import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
-import { useAccount } from "@hooks/web3";
+import { useAccount, useNetwork } from "@hooks/web3";
 import ConnectButton from "../ConnectButton";
 
 const Header = () => {
@@ -13,9 +13,8 @@ const Header = () => {
   }, []);
 
   const { account } = useAccount();
-  console.log(account.data);
-  console.log("is Loading: ", account.isLoading);
-  console.log("is Installed: ", account.isInstalled);
+  const { network } = useNetwork();
+  console.log(network.data);
 
   return (
     <>

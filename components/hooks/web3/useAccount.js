@@ -5,7 +5,7 @@ export const hookFactory =
   ({ provider, ethereum, isLoading }) =>
   () => {
     const { data, mutate, isValidating, ...swr } = useSWR(
-      provider ? "web3/account" : null,
+      provider ? "web3/useAccount" : null,
       async () => {
         const accounts = await provider?.listAccounts();
         const account = accounts[0];
