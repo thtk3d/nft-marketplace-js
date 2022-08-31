@@ -62,7 +62,7 @@ const Footer = () => {
               @Contact Me
             </h1>
             <div className="border border-white py-2 pl-4">
-              <p className="text-orange-400">Tuyên bố từ chối trách nhiệm:</p>{" "}
+              <p className="text-orange-400">Tuyên bố từ chối trách nhiệm:</p>
               Các thông tin được đăng trên DqvBlock chỉ mang ý kiến cá nhân của
               tác giả, không cấu thành bất kỳ lời khuyên đầu tư nào.
             </div>

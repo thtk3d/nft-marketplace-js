@@ -12,6 +12,7 @@ const Header = () => {
   }, []);
 
   const { account } = useAccount();
+  console.log(account.data);
 
   return (
     <>
