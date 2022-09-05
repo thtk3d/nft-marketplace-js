@@ -13,13 +13,22 @@ contract NftMarket is ERC721URIStorage {
     constructor() ERC721("VugomarsNFT", "VGM") {}
 
     mapping(string => bool) private _existsTokenURI;
+    mapping(uint256 => NftItem) private _idToNftItem;
 
-    function mintToken(string memory tokenURI)
+    struct NftItem {
+        uint256 tokenId;
+        uint256 price;
+        address owner;
+    }
+
+    event NftItemCreate(uint256 tokenId, uint256 price, address owner);
+
+    function mintToken(string memory tokenURI, uint256 price)
         public
         payable
         returns (uint256)
     {
-        require(!checkTokenURIs(TokenURI), "TokenURI already exists");
+        require(!checkTokenURIs(tokenURI), "TokenURI already exists");
         _listedItems.increment();
         _tokenIds.increment();
 
@@ -27,12 +36,28 @@ contract NftMarket is ERC721URIStorage {
 
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, tokenURI);
-        _existsTokenURI[TokenURI] = true;
+        _NftItemCreated(newTokenId, price);
+        _existsTokenURI[tokenURI] = true;
 
         return newTokenId;
     }
 
     function checkTokenURIs(string memory tokenURI) public view returns (bool) {
-        return _existsTokenURI[TokenURI] == true;
+        return _existsTokenURI[tokenURI] == true;
+    }
+
+    function getInfoNFt(uint256 tokenId) public view returns (NftItem memory) {
+        return _idToNftItem[tokenId];
+    }
+
+    function listedNftItem() public view returns (uint256) {
+        return _listedItems.current();
+    }
+
+    function _NftItemCreated(uint256 tokenId, uint256 price) private {
+        require(price >= 0, "Price must be at least 1 wei");
+
+        _idToNftItem[tokenId] = NftItem(tokenId, price, msg.sender);
+        emit NftItemCreate(tokenId, price, msg.sender);
     }
 }
