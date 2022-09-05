@@ -10,19 +10,29 @@ contract NftMarket is ERC721URIStorage {
     Counters.Counter private _listedItems; // 0
     Counters.Counter private _tokenIds; // 0
 
-
     constructor() ERC721("VugomarsNFT", "VGM") {}
 
+    mapping(string => bool) private _existsTokenURI;
 
-    function mintToken(string memory tokenURI) public payable returns (uint) {
-        _listedItems.increment(); // 1
-        _tokenIds.increment(); // 1
+    function mintToken(string memory tokenURI)
+        public
+        payable
+        returns (uint256)
+    {
+        require(!checkTokenURIs(TokenURI), "TokenURI already exists");
+        _listedItems.increment();
+        _tokenIds.increment();
 
-        uint newTokenId = _tokenIds.current(); //1
+        uint256 newTokenId = _tokenIds.current();
 
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, tokenURI);
+        _existsTokenURI[TokenURI] = true;
 
         return newTokenId;
+    }
+
+    function checkTokenURIs(string memory tokenURI) public view returns (bool) {
+        return _existsTokenURI[TokenURI] == true;
     }
 }
