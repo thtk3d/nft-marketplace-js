@@ -10,6 +10,8 @@ contract NftMarket is ERC721URIStorage {
     Counters.Counter private _listedItems; // 0
     Counters.Counter private _tokenIds; // 0
 
+    uint256[] private allNfts_;
+
     constructor() ERC721("VugomarsNFT", "VGM") {}
 
     mapping(string => bool) private _existsTokenURI;
@@ -70,5 +72,32 @@ contract NftMarket is ERC721URIStorage {
 
         _idToNftItem[tokenId] = NftItem(tokenId, price, msg.sender);
         emit NftItemCreate(tokenId, price, msg.sender);
+    }
+
+    function totalSupply() public view returns (uint256) {
+        return allNfts_.length;
+    }
+
+    function tokenByIndex(uint256 index) public view returns (uint256) {
+        require(index < totalSupply, "Index out of bound");
+        return allNfts_[index];
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal virtual override {
+        super._beforeTokenTransfer(from, to, tokenId);
+        if (from == address(0)) {
+            _addTokenToListToken(tokenId);
+        }
+    }
+
+    mapping(uint256 => uint256) _idNftToIndex;
+
+    function _addTokenToListToken(uint256 tokenId) private {
+        _idNftToIndex[tokenId] = allNfts_.length;
+        allNfts_.push(tokenId);
     }
 }
